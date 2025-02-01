@@ -8,4 +8,5 @@ export default defineConfig({
     host: true,
   },
   output: "server",
+  adapter: netlify(),
 });
