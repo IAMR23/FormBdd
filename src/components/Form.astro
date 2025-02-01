@@ -1,0 +1,122 @@
+<div class="flex flex-col justify-center items-center">
+  <form class="form" method="POST" id="miFormulario">
+    <h1 class="text-2xl text-white p-5 uppercase">Confirmar Asistencia</h1>
+    <div class="field">
+      <input
+        placeholder="Nombre"
+        name="nombre"
+        class="input-field"
+        type="text"
+      />
+    </div>
+    <div class="field">
+      <input placeholder="edad" name="edad" class="input-field" type="text" />
+    </div>
+
+    <!--  <select class="field" id="opcion" name="Confirmacion">
+      <option value="" disabled selected>Confirmación</option>
+      <option value="Sí, asistiré">Sí, asistiré</option>
+      <option value="No podré asistir">No podré asistir</option>
+    </select> -->
+
+    <button class="btn hover:contrast-125" type="submit"
+      >Enviar Respuesta</button
+    >
+  </form>
+</div>
+
+<style>
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    border-radius: 25px;
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  }
+
+  .input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: white;
+  }
+
+  .btn {
+    margin-bottom: 3em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    background-color: #0a2472;
+  }
+</style>
+
+<script>
+  import Swal from "sweetalert2";
+
+  const formulario = document.getElementById("miFormulario") as HTMLFormElement;
+
+  formulario.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    /*const seleccion = (document.getElementById("opcion") as HTMLInputElement)
+      .value;
+    console.log(seleccion); */
+    const formData = new FormData(formulario);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+
+    const response = await fetch("https://soydev2019.up.railway.app/guardar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    console.log(result.mensaje);
+  });
+
+  /*  if (seleccion === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Asegurate de revisar tu confirmación",
+      });
+      e.preventDefault(); // Evita que el formulario se envíe si no se ha seleccionado una opción válida
+    } else {
+      e.preventDefault();
+      fetch("https://soydev2019.up.railway.app/guardar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formulario),
+      })
+        .then(() =>
+          Swal.fire("Genial!", "Muchas gracias por tu respuesta", "success")
+        )
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((err) => console.error("Error", err.message));
+    }
+  }); */
+</script>
