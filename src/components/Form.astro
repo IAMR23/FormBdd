@@ -1,23 +1,34 @@
-<div class="flex flex-col justify-center items-center">
+<div class="flex flex-col justify-center items-center h-screen">
   <form class="form" method="POST" id="miFormulario">
     <h1 class="text-2xl text-white p-5 uppercase">Confirmar Asistencia</h1>
     <div class="field">
       <input
         placeholder="Nombre"
-        name="nombre"
+        name="nombres"
         class="input-field"
         type="text"
       />
     </div>
     <div class="field">
-      <input placeholder="edad" name="edad" class="input-field" type="text" />
+      <input
+        placeholder="Apellidos"
+        name="apellidos"
+        class="input-field"
+        type="text"
+      />
     </div>
 
-    <!--  <select class="field" id="opcion" name="Confirmacion">
+    <select class="field" id="opasistencia" name="asistencia">
       <option value="" disabled selected>Confirmación</option>
       <option value="Sí, asistiré">Sí, asistiré</option>
       <option value="No podré asistir">No podré asistir</option>
-    </select> -->
+    </select>
+
+    <select class="field" id="opalergia" name="alergia">
+      <option value="" disabled selected>Alergia</option>
+      <option value="Sí">Si</option>
+      <option value="No">No</option>
+    </select>
 
     <button class="btn hover:contrast-125" type="submit"
       >Enviar Respuesta</button
@@ -79,36 +90,28 @@
 
   formulario.addEventListener("submit", async function (e) {
     e.preventDefault();
-    /*const seleccion = (document.getElementById("opcion") as HTMLInputElement)
+    const asistencia = (
+      document.getElementById("opasistencia") as HTMLInputElement
+    ).value;
+    const alergia = (document.getElementById("opalergia") as HTMLInputElement)
       .value;
-    console.log(seleccion); */
+
     const formData = new FormData(formulario);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
 
-    const response = await fetch("https://soydev2019.up.railway.app/guardar", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-    const result = await response.json();
-    console.log(result.mensaje);
-  });
-
-  /*  if (seleccion === "") {
+    if (asistencia === "" || alergia === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Asegurate de revisar tu confirmación",
       });
-      e.preventDefault(); // Evita que el formulario se envíe si no se ha seleccionado una opción válida
+      e.preventDefault();
     } else {
       e.preventDefault();
       fetch("https://soydev2019.up.railway.app/guardar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formulario),
+        body: JSON.stringify(data),
       })
         .then(() =>
           Swal.fire("Genial!", "Muchas gracias por tu respuesta", "success")
@@ -118,5 +121,5 @@
         })
         .catch((err) => console.error("Error", err.message));
     }
-  }); */
+  });
 </script>

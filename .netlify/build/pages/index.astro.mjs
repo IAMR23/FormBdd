@@ -5,12 +5,8 @@ import 'html-escaper';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
 
-const $$Form = createComponent(async ($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<div class="flex flex-col justify-center items-center" data-astro-cid-346426y5> <form class="form" method="POST" id="miFormulario" data-astro-cid-346426y5> <h1 class="text-2xl text-white p-5 uppercase" data-astro-cid-346426y5>Confirmar Asistencia</h1> <div class="field" data-astro-cid-346426y5> <input placeholder="Nombre" name="nombre" class="input-field" type="text" data-astro-cid-346426y5> </div> <div class="field" data-astro-cid-346426y5> <input placeholder="edad" name="edad" class="input-field" type="text" data-astro-cid-346426y5> </div> <!--  <select class="field" id="opcion" name="Confirmacion">
-      <option value="" disabled selected>Confirmación</option>
-      <option value="Sí, asistiré">Sí, asistiré</option>
-      <option value="No podré asistir">No podré asistir</option>
-    </select> --> <button class="btn hover:contrast-125" type="submit" data-astro-cid-346426y5>Enviar Respuesta</button> </form> </div>  ${renderScript($$result, "C:/Users/ismae/Downloads/pro/Form/dark-disk/src/components/Form.astro?astro&type=script&index=0&lang.ts")}`;
+const $$Form = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${maybeRenderHead()}<div class="flex flex-col justify-center items-center h-screen" data-astro-cid-346426y5> <form class="form" method="POST" id="miFormulario" data-astro-cid-346426y5> <h1 class="text-2xl text-white p-5 uppercase" data-astro-cid-346426y5>Confirmar Asistencia</h1> <div class="field" data-astro-cid-346426y5> <input placeholder="Nombre" name="nombres" class="input-field" type="text" data-astro-cid-346426y5> </div> <div class="field" data-astro-cid-346426y5> <input placeholder="Apellidos" name="apellidos" class="input-field" type="text" data-astro-cid-346426y5> </div> <select class="field" id="opasistencia" name="asistencia" data-astro-cid-346426y5> <option value="" disabled selected data-astro-cid-346426y5>Confirmación</option> <option value="Sí, asistiré" data-astro-cid-346426y5>Sí, asistiré</option> <option value="No podré asistir" data-astro-cid-346426y5>No podré asistir</option> </select> <select class="field" id="opalergia" name="alergia" data-astro-cid-346426y5> <option value="" disabled selected data-astro-cid-346426y5>Alergia</option> <option value="Sí" data-astro-cid-346426y5>Si</option> <option value="No" data-astro-cid-346426y5>No</option> </select> <button class="btn hover:contrast-125" type="submit" data-astro-cid-346426y5>Enviar Respuesta</button> </form> </div>  ${renderScript($$result, "C:/Users/ismae/Downloads/pro/Form/dark-disk/src/components/Form.astro?astro&type=script&index=0&lang.ts")}`;
 }, "C:/Users/ismae/Downloads/pro/Form/dark-disk/src/components/Form.astro", undefined);
 
 const $$Astro$1 = createAstro();
