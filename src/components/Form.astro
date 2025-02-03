@@ -1,15 +1,17 @@
 <div class="flex flex-col justify-center items-center h-screen">
-  <form class="form" method="POST" id="miFormulario">
-    <h1 class="text-2xl text-white p-5 uppercase">Confirmar Asistencia</h1>
+  <form class="form bg-cafe-claro" method="POST" id="miFormulario">
+    <h1 class="text-2xl text-white p-5 uppercase font-bold">
+      Confirmar Asistencia
+    </h1>
     <div class="field">
       <input
-        placeholder="Nombre"
+        placeholder="Nombres y Apellidos"
         name="nombres"
         class="input-field"
         type="text"
       />
     </div>
-    <div class="field">
+    <div class="field" style="display: none;">
       <input
         placeholder="Apellidos"
         name="apellidos"
@@ -18,19 +20,52 @@
       />
     </div>
 
-    <select class="field" id="opasistencia" name="asistencia">
+    <!--     <select class="field" id="opasistencia" name="asistencia">
       <option value="" disabled selected>Confirmación</option>
       <option value="Sí, asistiré">Sí, asistiré</option>
       <option value="No podré asistir">No podré asistir</option>
-    </select>
+    </select> -->
 
-    <select class="field" id="opalergia" name="alergia">
+    <div class="flex flex-col space-y-2">
+      <label class="font-bold text-white">Confirmación:</label>
+
+      <label class="flex items-center space-x-2 text-gray-500">
+        <input
+          type="radio"
+          name="asistencia"
+          value="Sí, asistiré"
+          class="w-4 h-4"
+        />
+        <span>Sí, asistiré</span>
+      </label>
+
+      <label class="flex items-center space-x-2 text-gray-500">
+        <input
+          type="radio"
+          name="asistencia"
+          value="No podré asistir"
+          class="w-4 h-4"
+        />
+        <span>No podré asistir</span>
+      </label>
+    </div>
+
+    <div class="field">
+      <input
+        placeholder="¿Tienes alergia algún alimento?"
+        name="alergia"
+        class="input-field"
+        type="text"
+      />
+    </div>
+
+    <!--     <select class="field" id="opalergia" name="alergia">
       <option value="" disabled selected>Alergia</option>
       <option value="Sí">Si</option>
       <option value="No">No</option>
     </select>
-
-    <button class="btn hover:contrast-125" type="submit"
+ -->
+    <button class="btn bg-cafe-oscuro font-bold" type="submit"
       >Enviar Respuesta</button
     >
   </form>
@@ -44,7 +79,6 @@
     padding-left: 3em;
     padding-right: 3em;
     padding-bottom: 0.4em;
-    background-color: #171717;
     border-radius: 25px;
   }
 
@@ -57,9 +91,7 @@
     padding: 0.6em;
     border: none;
     outline: none;
-    color: white;
-    background-color: #171717;
-    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+    background-color: white;
   }
 
   .input-field {
@@ -67,7 +99,6 @@
     border: none;
     outline: none;
     width: 100%;
-    color: white;
   }
 
   .btn {
@@ -77,9 +108,7 @@
     border: none;
     outline: none;
     transition: 0.4s ease-in-out;
-    background-color: #252525;
     color: white;
-    background-color: #0a2472;
   }
 </style>
 
@@ -90,16 +119,17 @@
 
   formulario.addEventListener("submit", async function (e) {
     e.preventDefault();
-    const asistencia = (
-      document.getElementById("opasistencia") as HTMLInputElement
-    ).value;
-    const alergia = (document.getElementById("opalergia") as HTMLInputElement)
-      .value;
+
+    const seleccion = document.querySelector(
+      'input[name="asistencia"]:checked'
+    );
 
     const formData = new FormData(formulario);
     const data = Object.fromEntries(formData.entries());
 
-    if (asistencia === "" || alergia === "") {
+    data.apellidos = "Vacio";
+    console.log(data);
+    if (!seleccion) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
